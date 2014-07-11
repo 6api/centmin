@@ -1,0 +1,13 @@
+Installation 
+
+To log install output to centmin.log log file type:
+
+script -f centmin.log
+
+then run install script
+
+./centmin.sh
+
+once install script completes type 'exit' to write output to centmin.log file
+
+exit

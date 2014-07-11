@@ -1,0 +1,99 @@
+v1.2.3 - 04/10/2011
+- UPDATE: nginx updated to version 1.0.8
+- UPDATE: google-perftools updated to version 1.8.3
+- UPDATE: Libevent updated to version 2.0.14
+- UPDATE: MariaDB updated to 5.2.9
+- UPDATE: libunwind updated to 1.0.1
+- UPDATE: PCRE updated to 8.13
+- BUGFIX: Added required Perl module for LFD to function on some configurations
+- FEATURE: Added memory detection routine, with OpenVZ support
+- FEATURE: Added option to use minimal/maximal resource usage configurations
+- FEATURE: Added php-fpm logrotate
+- Various installation speed improvements
+
+v1.2.2 - 20/09/2011
+- UPDATE: nginx updated to version 1.0.6
+- UPDATE: google-perftools updated to version 1.8.2
+- UPDATE: OpenSSL updated to version 1.0.0e
+- UPDATE: Libevent updated to version 2.0.13
+- UPDATE: Memcached updated to version 1.4.7
+- UPDATE: PHP updated to version 5.3.8
+- UPDATE: Python updated to version 2.7.2
+- FEATURE: Added nginx to logrotate.
+- BUGFIX: MariaDB installation fixes.
+- BUGFIX: Updated outdated URLs.
+- UPDATE: php configuration updated to include many more useful features (mcrypt, IMAP, pcre regex, PDO, GD2 features etc.)
+- UPDATE: Many configuration changes (thanks to eva2000).
+
+v1.2.1 - 18/06/2011
+- Various Bugfixes (the majority of them thanks to eva2000).
+- FEATURE: Added memcached (this was excluded from the previous version due to last minute issues).
+- FEATURE: Added xcache admin directory to /usr/local/nginx/html/myxcacheadmin/ you need to read config/xcache/xcache_admin_setup_instructions.txt for xcache admin user/pass changes procedure
+- FEATURE: Added config/htpasswdgen/htpasswd.py python based htpasswd encoding generator to create passwords for systems without Apache. Original author of htpasswd.py, Eli Carter http://trac.edgewall.org/browser/trunk/contrib/htpasswd.py. To encode a password for htpasswd protection run command: python /usr/local/nginx/conf/htpasswd.py -b /usr/local/nginx/conf/htpasswd yourusername yourpassword. Or if you have htpasswd from apache, set password up with command: htpasswd -s /usr/local/nginx/conf/htpasswd yourusername
+- UPDATE: Added --tries=3 flag to all wget downloads in case of any errors while downloading.
+- FEATURE: Added option to install/update Python.
+- EXTRAS: Added nginx-vhost command - Example usage: nginx-vhost domain.com (sets up new virtual host for domain.com). See readme.txt for further details.
+- EXTRAS: Added nginx-update command, this used to be an extras script, now converted to a command for simplicity.
+- UPDATE: Updated MySQL Community default server & MariaDB MySQL my.cnf settings.
+- UPDATE: Fixed various broken download URLs.
+- UPDATE: Fixed nginx-update.sh script - various version definitions were missing.
+- UPDATE: readme.txt updated & corrected to reflect recent changes.
+- UPDATE: command_shortcuts.txt updated to reflect changes.
+
+v1.2.0 - 05/06/2011
+There are major feature updates in this version, the script size has almost tripled!
+
+Many of updates in this version have been contributed by "eva2000" of vbtechsupport.com - we have cleaned up his code,
+fixed bugs and added support for 32bit CentOS (as he released changes only for 64bit OS).
+
+- PHP now compiled from source instead of installed via external repository.
+- Various other libraries, modules and applications now compiled from source.
+- Development Tools list updated.
+- UPDATE: nginx updated to version 1.0.4, nginx configuration tweaked, various nginx addons installed by default.
+- UPDATE: Both Nginx and PHP compiled with OpenSSL 1.0.0d support instead of OpenSSL 0.9.8e
+- FEATURE: Added IPv6 support installation option for nginx.
+- FEATURES: Added Siege, Sproxy, MariaDB, XCache, ConfigServer Firewall, PCRE, Script shortcuts.
+- EXTRAS: Nginx update script updated.
+- The majority of services are now started at the end of the script to allow maximum memory during compilation.
+- Readme updated.
+- Minor bugfixes, various new script checks.
+v1.1.0 - 29/04/2011
+- CentOS 5.6 Compatibility update.
+- UPDATE: NSD updated to version 3.2.8.
+- UPDATE: PHP updated to version 5.3.6.
+- REMOVED: Unneeded IUS modification.
+- BUGFIX: CentOS repos now installed as intended.
+- Readme updated.
+v1.0.9 - 28/04/2011
+- Internal Testing release.
+- UPDATE: nginx default version updated to 1.0.
+- UPDATE: PHP installation method due to CentOS/IUS repo changes.
+v1.0.8 - 05/10/2010
+- BUGFIX: nginx update script is no longer deleted after use.
+- UPDATE: Switched default interpreter to /bin/sh from /bin/bash.
+- Script now removes files it downloads after use.
+v1.0.7 - 03/10/2010
+- UPDATE: nginx default version updated to 0.8.52.
+- FEATURE: Added nginx update script to extra folder.
+v1.0.6 - 27/09/2010
+- UPDATE: nginx default version set to 0.8.51, to reflect the 0.8.x branch change to stable status.
+- FEATURE: Added option to install APC (Alternative PHP Cache).
+v1.0.5 - 17/09/2010
+- BUGFIX: Added "make" to development tools install list - thanks to RavC at 6sync.com for pointing that out.
+- Added some sanity checking when disabling Apache.
+- A little bit of script cleanup/rewording here and there.
+v1.0.4 - 16/09/2010
+- FEATURE: Added "nginx_VERSION" flag, to allow users to specify what version of nginx to download.
+v1.0.3 - 15/09/2010
+- BUGFIX: Fixed another bug with PHP configuration.
+- BUGFIX: Fixed a problem with the demo.com NSD zone.
+v1.0.2 - 15/09/2010
+- Added default configuration for both nginx and NSD.
+- BUGFIX: Set script to install PHP before nginx to fix a bug.
+- Removed unneeded packages from the required development tools.
+- Created readme.txt, added license.txt.
+v1.0.1 - 14/09/2010
+- FEATURE: Added optional "ARCH_OVERRIDE" flag, allows script to run correctly on CentOS 32bit using a Paravirtulized Xen VPS without PyGrub (64bit host node).
+- BUGFIX: Removed several unneeded options, fixed a couple of small bugs.
+v1.0 - 13/09/2010
+- Inital (tested) Release.

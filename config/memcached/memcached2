@@ -1,0 +1,66 @@
+#!/bin/sh
+# chkconfig: - 80 12
+# description:  The memcached daemon is a network memory cache service.
+# processname: memcached
+BIN=/usr/local/bin/memcached
+USER=nobody
+CON=2048
+THREADS=4
+MINSP=48
+CHUNKF=1.05
+PORT1=11211
+PORT2=11212
+MEMSIZE=8
+SERVERCOUNT=2
+
+if [ -f /proc/user_beancounters ]; then
+ulimit -s 256
+fi
+
+if [ "$SERVERCOUNT" == '2' ]; then
+
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT1 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT2 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+
+elif  [ "$SERVERCOUNT" == '1' ]; then
+
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT1 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+
+fi
+
+case "$1" in
+start)
+
+if [ "$SERVERCOUNT" == '2' ]; then
+
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT1 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT2 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+
+elif  [ "$SERVERCOUNT" == '1' ]; then
+
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT1 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+
+fi
+
+;;
+stop) 
+
+killall $BIN
+
+;;
+restart)             
+killall $BIN
+
+if [ "$SERVERCOUNT" == '2' ]; then
+
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT1 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT2 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+
+elif  [ "$SERVERCOUNT" == '1' ]; then
+
+$BIN -d -m $MEMSIZE -l 127.0.0.1 -p $PORT1 -c $CON -t $THREADS -n $MINSP -f $CHUNKF -u $USER
+
+fi
+
+;;
+esac
